@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brasa da Vila — Hambúrguer Artesanal em Volta Redonda</title>
+<meta name="description" content="Catálogo digital Brasa da Vila. Monte seu pedido e envie direto pelo WhatsApp.">
+<style>
+
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --ink:#18140F; --paper:#F7F3EC; --panel:#FFFFFF; --panel-2:#F0E9DB;
+  --copper:#A8601F; --copper-deep:#7A4315; --copper-light:#D98A3D; --wine:#7A3B33;
+  --green:#2F7A4C;
+  --line: rgba(24,20,15,0.1); --muted:#726A5C;
+  --ease: cubic-bezier(.22,1,.36,1); --radius:16px;
+  --shadow: 0 20px 50px rgba(24,20,15,0.10);
+}
+html[data-theme="dark"]{
+  --ink:#F5F0E6; --paper:#131110; --panel:#1D1915; --panel-2:#221D18;
+  --copper:#D98A3D; --copper-deep:#B5652E; --copper-light:#E8A85C; --wine:#C1655B;
+  --line: rgba(245,240,230,0.1); --muted:#A79D8C;
+  --shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   2. RESET / BASE
+   ============================================================ */
+*{margin:0; padding:0; box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; overflow-x:hidden; transition:background .4s var(--ease), color .4s var(--ease);}
+h1,h2,h3{font-family:'Fraunces',serif;}
+a{text-decoration:none; color:inherit;}
+button{font-family:inherit; border:none; background:none; cursor:pointer; color:inherit;}
+img{display:block; max-width:100%;}
+:focus-visible{outline:2px solid var(--copper); outline-offset:3px;}
+.wrap{max-width:1240px; margin:0 auto; padding:0 28px;}
+::selection{background:var(--copper); color:#fff;}
+.it{font-style:italic; color:var(--copper); font-weight:500;}
+.mono{font-family:'Space Mono',monospace;}
+.reveal{opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+.reveal.in{opacity:1; transform:translateY(0);}
+.section{padding:100px 0;}
+.section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:50px; flex-wrap:wrap;}
+.section-head .eyebrow{color:var(--copper); font-family:'Space Mono',monospace; font-size:0.76rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:14px; display:block;}
+.section-head h2{font-size:clamp(2rem,4vw,3rem); font-weight:600; line-height:1.08; max-width:600px;}
+.section-head p{color:var(--muted); max-width:300px; font-size:0.95rem; line-height:1.6;}
+.btn-primary{background:var(--copper); color:#fff; padding:16px 30px; border-radius:100px; font-weight:700; font-size:0.9rem; display:inline-flex; align-items:center; justify-content:center; gap:10px; transition:transform .3s var(--ease), background .3s, box-shadow .3s; box-shadow:0 14px 30px rgba(168,96,31,0.28);}
+.btn-primary:hover{transform:translateY(-3px); background:var(--copper-deep);}
+.btn-primary:disabled{opacity:0.45; cursor:not-allowed; transform:none; box-shadow:none;}
+.btn-ghost{border:1.5px solid var(--line); color:var(--ink); padding:15px 28px; border-radius:100px; font-weight:700; font-size:0.9rem; transition:border-color .3s, background .3s;}
+.btn-ghost:hover{border-color:var(--copper); background:rgba(168,96,31,0.06);}
+.btn-whatsapp{background:#25D366; color:#fff; width:100%; padding:17px; border-radius:100px; font-weight:800; font-size:0.98rem; display:flex; align-items:center; justify-content:center; gap:10px; transition:transform .25s var(--ease), background .25s;}
+.btn-whatsapp:hover{background:#1FB855; transform:translateY(-2px);}
+.btn-whatsapp:disabled{opacity:0.4; cursor:not-allowed; transform:none;}
+
+/* ============================================================
+   3. NAV
+   ============================================================ */
+nav{position:fixed; top:0; left:0; right:0; z-index:200; padding:20px 0; transition:background .35s var(--ease), padding .35s var(--ease), border-color .35s; border-bottom:1px solid transparent;}
+nav.scrolled{background:rgba(247,243,236,0.85); backdrop-filter:blur(14px) saturate(160%); padding:13px 0; border-color:var(--line);}
+html[data-theme="dark"] nav.scrolled{background:rgba(19,17,16,0.85);}
+nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+.brand{font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem;}
+.navlinks{display:flex; gap:30px;}
+.navlinks a{font-size:0.8rem; letter-spacing:0.04em; font-weight:600; opacity:0.8; transition:opacity .2s, color .2s;}
+.navlinks a:hover{opacity:1; color:var(--copper);}
+.nav-right{display:flex; align-items:center; gap:12px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:0.95rem; transition:transform .3s var(--ease), background .3s;}
+.theme-toggle:hover{transform:rotate(15deg); background:rgba(168,96,31,0.1);}
+.nav-cart-btn{background:var(--copper); color:#fff; padding:10px 18px; border-radius:100px; font-size:0.8rem; font-weight:700; display:flex; align-items:center; gap:8px; transition:transform .25s var(--ease), background .25s;}
+.nav-cart-btn:hover{transform:translateY(-2px); background:var(--copper-deep);}
+.cart-count{background:#fff; color:var(--copper); font-size:0.68rem; font-weight:800; min-width:18px; height:18px; padding:0 4px; border-radius:100px; display:flex; align-items:center; justify-content:center;}
+.burger-btn{display:none; flex-direction:column; gap:5px; width:24px;}
+.burger-btn span{height:2px; background:var(--ink); border-radius:2px;}
+.mobile-menu{position:fixed; inset:0; z-index:300; background:var(--paper); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; transform:translateY(-100%); transition:transform .45s var(--ease);}
+.mobile-menu.open{transform:translateY(0);}
+.mobile-menu a{font-family:'Fraunces',serif; font-size:1.7rem; font-weight:600;}
+.mobile-close{position:absolute; top:24px; right:26px; font-size:1.5rem;}
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero{position:relative; padding:160px 0 80px; overflow:hidden;}
+.hero-glow{position:absolute; top:-200px; right:-160px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(168,96,31,0.16), transparent 68%); pointer-events:none;}
+.hero .wrap{position:relative; display:grid; grid-template-columns:0.95fr 1.05fr; gap:50px; align-items:center;}
+.badge-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px;}
+.badge{display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:100px; background:var(--panel); border:1px solid var(--line); font-size:0.75rem; font-weight:700; box-shadow:var(--shadow);}
+.badge .dot{width:6px; height:6px; border-radius:50%; background:var(--copper);}
+.hero h1{font-size:clamp(2.4rem,4.4vw,3.5rem); line-height:1.08; font-weight:600; letter-spacing:-0.01em; margin-bottom:20px;}
+.hero p.desc{color:var(--muted); font-size:1.02rem; line-height:1.7; max-width:460px; margin-bottom:32px;}
+.hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+.hero-visual{position:relative;}
+.hero-photo{aspect-ratio:4/4.4; border-radius:28px; overflow:hidden; box-shadow:var(--shadow);}
+.hero-photo img{width:100%; height:100%; object-fit:cover;}
+.hero-float{position:absolute; bottom:-22px; left:-22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:15px 19px; display:flex; align-items:center; gap:12px; box-shadow:var(--shadow);}
+.hero-float b{font-family:'Fraunces',serif; font-size:1.3rem; display:block;}
+.hero-float span{font-size:0.74rem; color:var(--muted);}
+.stars-mini{color:var(--copper); letter-spacing:1px;}
+
+/* ============================================================
+   5. TICKER
+   ============================================================ */
+.ticker{background:var(--ink); color:var(--paper); padding:13px 0; overflow:hidden; white-space:nowrap;}
+.ticker-track{display:inline-flex; animation:scrollT 28s linear infinite;}
+.ticker span{font-family:'Space Mono',monospace; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; padding:0 26px; display:inline-flex; align-items:center; gap:26px; opacity:0.9;}
+.ticker span::after{content:'✦'; color:var(--copper-light);}
+@keyframes scrollT{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* ============================================================
+   6. FILTROS + CATÁLOGO
+   ============================================================ */
+.menu-tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px; position:sticky; top:70px; z-index:50; background:var(--paper); padding:12px 0;}
+.menu-tab{padding:10px 20px; border-radius:100px; border:1px solid var(--line); font-weight:700; font-size:0.84rem; transition:background .25s, color .25s, border-color .25s; white-space:nowrap;}
+.menu-tab.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+.menu-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.product-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:transform .3s var(--ease), box-shadow .3s var(--ease); display:flex; flex-direction:column;}
+.product-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+.product-photo{aspect-ratio:5/4; overflow:hidden; cursor:pointer; position:relative;}
+.product-photo img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
+.product-card:hover .product-photo img{transform:scale(1.06);}
+.product-body{padding:18px 20px 20px; display:flex; flex-direction:column; flex:1;}
+.product-body h3{font-size:1.05rem; margin-bottom:6px; font-weight:600; cursor:pointer;}
+.product-body p{color:var(--muted); font-size:0.83rem; line-height:1.5; margin-bottom:14px; flex:1;}
+.product-foot{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+.product-price{font-family:'Space Mono',monospace; font-weight:700; color:var(--copper-deep);}
+html[data-theme="dark"] .product-price{color:var(--copper-light);}
+.add-btn{font-size:0.78rem; font-weight:700; padding:9px 16px; border-radius:100px; border:1px solid var(--line); transition:all .25s var(--ease); position:relative; overflow:hidden;}
+.add-btn.pop{animation:popAdd .4s var(--ease);}
+@keyframes popAdd{0%{transform:scale(1);} 40%{transform:scale(1.15); background:var(--copper); color:#fff; border-color:var(--copper);} 100%{transform:scale(1);}}
+@media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.menu-grid{grid-template-columns:1fr;} .menu-tabs{top:64px;}}
+
+.extras-note{margin-top:36px; padding:18px 22px; border:1px dashed var(--line); border-radius:14px; font-size:0.86rem; color:var(--muted); display:flex; align-items:center; gap:10px;}
+
+/* ============================================================
+   7. PROMOÇÕES DA SEMANA
+   ============================================================ */
+.promo-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+.promo-card{background:var(--ink); color:var(--paper); border-radius:var(--radius); overflow:hidden; display:grid; grid-template-columns:1fr 1.2fr; position:relative;}
+.promo-photo{overflow:hidden;}
+.promo-photo img{width:100%; height:100%; object-fit:cover;}
+.promo-body{padding:26px; display:flex; flex-direction:column; justify-content:center;}
+.promo-save{position:absolute; top:16px; left:16px; background:var(--copper); color:#fff; font-family:'Space Mono',monospace; font-size:0.7rem; font-weight:700; padding:6px 12px; border-radius:100px; letter-spacing:0.04em;}
+.promo-body h3{font-size:1.2rem; margin-bottom:10px;}
+.promo-body p{color:#D9D1C4; font-size:0.85rem; margin-bottom:16px; line-height:1.5;}
+.promo-price-row{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+.promo-old{font-family:'Space Mono',monospace; color:#A79D8C; text-decoration:line-through; font-size:0.9rem;}
+.promo-new{font-family:'Fraunces',serif; font-size:1.7rem; font-weight:700; color:var(--copper-light);}
+.promo-add{background:var(--copper-light); color:var(--ink); padding:12px 20px; border-radius:100px; font-weight:700; font-size:0.84rem; align-self:flex-start; transition:transform .25s var(--ease);}
+.promo-add:hover{transform:translateY(-2px);}
+@media(max-width:900px){.promo-grid{grid-template-columns:1fr;} .promo-card{grid-template-columns:1fr;}}
+
+/* ============================================================
+   8. GALERIA + LIGHTBOX
+   ============================================================ */
+.gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:170px; gap:14px;}
+.gallery-item{border-radius:14px; overflow:hidden; cursor:zoom-in; position:relative;}
+.gallery-item:nth-child(1){grid-column:span 2; grid-row:span 2;}
+.gallery-item:nth-child(4){grid-row:span 2;}
+.gallery-item img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
+.gallery-item:hover img{transform:scale(1.08);}
+.gallery-item::after{content:'🔍'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(24,20,15,0); font-size:1.4rem; opacity:0; transition:all .3s;}
+.gallery-item:hover::after{background:rgba(24,20,15,0.25); opacity:1;}
+@media(max-width:760px){.gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:140px;} .gallery-item:nth-child(1){grid-column:span 2;}}
+.lightbox{position:fixed; inset:0; z-index:500; background:rgba(10,8,6,0.92); display:none; align-items:center; justify-content:center; padding:40px;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw; max-height:85vh; border-radius:10px;}
+.lightbox-close{position:absolute; top:26px; right:32px; color:#fff; font-size:1.8rem;}
+
+/* ============================================================
+   9. SOBRE + CONTADORES
+   ============================================================ */
+.about{background:var(--ink); color:var(--paper);}
+.about .wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;}
+.about-img{aspect-ratio:4/5; border-radius:22px; overflow:hidden;}
+.about-img img{width:100%; height:100%; object-fit:cover;}
+.about-body .eyebrow{color:var(--copper-light);}
+.about-body h2{font-size:clamp(2rem,3.6vw,2.8rem); line-height:1.12; margin-bottom:20px; font-weight:600;}
+.about-body > p{color:#D9D1C4; font-size:1.02rem; line-height:1.75; max-width:480px; margin-bottom:40px;}
+.counters{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+.counter b{font-family:'Fraunces',serif; font-size:2.1rem; display:block; color:var(--copper-light);}
+.counter span{font-size:0.72rem; color:#B5AB9A; text-transform:uppercase; letter-spacing:0.05em;}
+@media(max-width:900px){.about .wrap{grid-template-columns:1fr;} .counters{grid-template-columns:repeat(2,1fr);}}
+
+/* ============================================================
+   10. DIFERENCIAIS
+   ============================================================ */
+.diff-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+.diff-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; transition:transform .3s var(--ease), box-shadow .3s;}
+.diff-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+.diff-ico{width:46px; height:46px; border-radius:12px; background:rgba(168,96,31,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+.diff-ico svg{width:23px; height:23px; color:var(--copper); stroke-width:1.5;}
+.diff-card h3{font-size:1.04rem; margin-bottom:8px; font-weight:700; font-family:'Inter',sans-serif;}
+.diff-card p{color:var(--muted); font-size:0.84rem; line-height:1.55;}
+@media(max-width:900px){.diff-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.diff-grid{grid-template-columns:1fr;}}
+
+/* ============================================================
+   11. AVALIAÇÕES
+   ============================================================ */
+.review-carousel{position:relative; max-width:720px; margin:0 auto;}
+.review-track{overflow:hidden;}
+.review-slides{display:flex; transition:transform .6s var(--ease);}
+.review-slide{flex:0 0 100%; padding:4px;}
+.review-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:34px; text-align:center;}
+.avatar{width:42px; height:42px; border-radius:50%; background:var(--copper); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fraunces',serif; margin:0 auto 14px;}
+.review-card .stars{color:var(--copper); letter-spacing:2px; margin-bottom:14px;}
+.review-card p{font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; line-height:1.55; margin-bottom:14px;}
+.review-name{font-weight:700; font-size:0.85rem;}
+.review-score{font-size:0.74rem; color:var(--muted);}
+.review-dots{display:flex; justify-content:center; gap:8px; margin-top:24px;}
+.review-dot{width:8px; height:8px; border-radius:50%; background:var(--line); transition:background .3s, transform .3s;}
+.review-dot.active{background:var(--copper); transform:scale(1.3);}
+.google-badge{display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:36px; color:var(--muted); font-size:0.88rem;}
+.google-badge b{color:var(--ink); font-family:'Fraunces',serif; font-size:1.25rem;}
+
+/* ============================================================
+   12. LOCALIZAÇÃO
+   ============================================================ */
+.local-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+.local-cards{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.local-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px;}
+.local-card .ico{width:32px; height:32px; border-radius:10px; background:rgba(168,96,31,0.1); color:var(--copper); display:flex; align-items:center; justify-content:center; margin-bottom:12px; font-size:0.9rem;}
+.local-card h4{font-size:0.88rem; margin-bottom:5px;}
+.local-card p{font-size:0.8rem; color:var(--muted); line-height:1.5;}
+.map-box{aspect-ratio:4/3.4; border-radius:18px; overflow:hidden; border:1px solid var(--line);}
+.map-box iframe{width:100%; height:100%; border:0;}
+html[data-theme="dark"] .map-box iframe{filter:grayscale(0.6) invert(0.92) contrast(0.9);}
+@media(max-width:900px){.local-grid{grid-template-columns:1fr;}}
+
+/* ============================================================
+   13. INSTAGRAM
+   ============================================================ */
+.insta-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:12px;}
+.insta-item{aspect-ratio:1; border-radius:10px; overflow:hidden;}
+.insta-item img{width:100%; height:100%; object-fit:cover; transition:transform .4s var(--ease);}
+.insta-item:hover img{transform:scale(1.1);}
+@media(max-width:760px){.insta-grid{grid-template-columns:repeat(3,1fr);}}
+
+/* ============================================================
+   14. FAQ
+   ============================================================ */
+.faq-list{max-width:720px;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%; display:flex; justify-content:space-between; align-items:center; padding:20px 4px; font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; text-align:left;}
+.faq-q .plus{font-size:1.3rem; color:var(--copper); transition:transform .3s var(--ease);}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .4s var(--ease);}
+.faq-a p{color:var(--muted); font-size:0.9rem; line-height:1.6; padding-bottom:20px; max-width:600px;}
+
+/* ============================================================
+   15. CTA FINAL
+   ============================================================ */
+.sell-cta{background:#18140F; color:#F7F3EC; position:relative; overflow:hidden;}
+.sell-cta::before{content:''; position:absolute; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle, rgba(168,96,31,0.18), transparent 65%); top:-200px; right:-200px;}
+.sell-cta .wrap{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+.sell-eyebrow{color:var(--copper-light); font-family:'Space Mono',monospace; font-size:0.76rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px; display:block;}
+.sell-cta h2{font-size:clamp(1.9rem,3.6vw,2.8rem); line-height:1.1; font-weight:600; margin-bottom:18px;}
+.sell-cta > .wrap > div:first-child > p{color:#D9D1C4; font-size:1rem; line-height:1.7; margin-bottom:30px; max-width:460px;}
+.sell-cta h2{color:#F7F3EC;}
+.deliver-list{display:grid; grid-template-columns:1fr 1fr; gap:13px;}
+.deliver-item{display:flex; align-items:center; gap:10px; font-size:0.88rem; color:#EDE7DA;}
+.deliver-item svg{width:17px; height:17px; color:var(--copper-light); flex:none;}
+.sell-panel{background:var(--panel-2); border:1px solid rgba(245,240,230,0.12); border-radius:22px; padding:38px; text-align:center;}
+html[data-theme="dark"] .sell-panel{background:#221D18;}
+.sell-panel .big-quote{font-family:'Fraunces',serif; font-style:italic; font-size:1.35rem; line-height:1.35; margin-bottom:24px; color:var(--paper);}
+.sell-panel .btn-primary{width:100%; padding:17px; font-size:0.96rem;}
+.sell-panel .note{margin-top:14px; font-size:0.76rem; color:#A79D8C;}
+@media(max-width:900px){.sell-cta .wrap{grid-template-columns:1fr;} .deliver-list{grid-template-columns:1fr;}}
+
+footer{border-top:1px solid var(--line); padding:36px 0; padding-bottom:calc(36px + env(safe-area-inset-bottom));}
+footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; font-size:0.8rem; color:var(--muted); align-items:center;}
+
+/* ============================================================
+   16. BOTÕES FLUTUANTES (carrinho + whatsapp)
+   ============================================================ */
+.float-stack{position:fixed; right:22px; bottom:22px; z-index:150; display:flex; flex-direction:column; gap:14px; align-items:flex-end;}
+.float-btn{width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 10px 26px rgba(0,0,0,0.3); position:relative; transition:transform .25s var(--ease);}
+.float-btn:hover{transform:scale(1.06);}
+.float-cart{background:var(--ink); color:var(--paper);}
+.float-cart .cart-count{position:absolute; top:-4px; right:-4px; background:var(--copper); color:#fff;}
+.float-wa{background:#25D366; color:#fff; animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 10px 26px rgba(0,0,0,.3),0 0 0 0 rgba(37,211,102,.5);} 50%{box-shadow:0 10px 26px rgba(0,0,0,.3),0 0 0 12px rgba(37,211,102,0);}}
+@media (prefers-reduced-motion: reduce){ .float-wa,.ticker-track{animation:none;} .reveal{transition:none; opacity:1; transform:none;} }
+
+/* ============================================================
+   17. CARRINHO — DRAWER
+   ============================================================ */
+.cart-overlay{position:fixed; inset:0; background:rgba(10,8,6,0.5); z-index:600; display:none;}
+.cart-overlay.open{display:block;}
+.cart-drawer{position:fixed; top:0; right:0; bottom:0; width:420px; max-width:100vw; background:var(--panel); z-index:601; display:flex; flex-direction:column; transform:translateX(100%); transition:transform .4s var(--ease); box-shadow:-20px 0 50px rgba(0,0,0,0.2);}
+.cart-drawer.open{transform:translateX(0);}
+.cart-head{display:flex; align-items:center; justify-content:space-between; padding:22px 24px; border-bottom:1px solid var(--line);}
+.cart-head h3{font-size:1.2rem;}
+.cart-head button{font-size:1.4rem; color:var(--muted);}
+.cart-items{flex:1; overflow-y:auto; padding:18px 24px;}
+.cart-empty{padding:60px 24px; text-align:center; color:var(--muted); font-size:0.92rem;}
+.cart-item{display:grid; grid-template-columns:60px 1fr auto; gap:14px; padding:16px 0; border-bottom:1px solid var(--line); align-items:center;}
+.cart-item img{width:60px; height:60px; border-radius:10px; object-fit:cover;}
+.ci-info h4{font-size:0.92rem; margin-bottom:4px; font-weight:600;}
+.ci-addons{font-size:0.74rem; color:var(--muted); display:block; margin-bottom:8px;}
+.ci-qty{display:flex; align-items:center; gap:10px;}
+.ci-qty button{width:24px; height:24px; border-radius:50%; border:1px solid var(--line); font-weight:700; font-size:0.9rem; display:flex; align-items:center; justify-content:center;}
+.ci-qty span{font-family:'Space Mono',monospace; font-size:0.88rem; min-width:16px; text-align:center;}
+.ci-price{font-family:'Space Mono',monospace; font-weight:700; font-size:0.88rem; text-align:right; white-space:nowrap;}
+.ci-remove{font-size:0.7rem; color:var(--muted); text-decoration:underline; margin-top:6px; display:inline-block;}
+.cart-summary{padding:20px 24px; border-top:1px solid var(--line);}
+.cart-summary .row{display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:8px; color:var(--muted);}
+.cart-summary .row.total{color:var(--ink); font-weight:700; font-size:1.15rem; margin-bottom:18px; font-family:'Fraunces',serif;}
+@media(max-width:600px){ .cart-drawer{width:100vw;} }
+
+/* ============================================================
+   18. MODAL DE PRODUTO
+   ============================================================ */
+.modal-overlay{position:fixed; inset:0; background:rgba(10,8,6,0.6); z-index:700; display:none; align-items:center; justify-content:center; padding:24px;}
+.modal-overlay.open{display:flex;}
+.product-modal{background:var(--panel); border-radius:22px; max-width:820px; width:100%; max-height:90vh; overflow-y:auto; display:grid; grid-template-columns:1fr 1fr; position:relative;}
+.modal-close{position:absolute; top:16px; right:16px; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,0.4); color:#fff; font-size:1.1rem; display:flex; align-items:center; justify-content:center; z-index:2;}
+.modal-img{aspect-ratio:1; overflow:hidden;}
+.modal-img img{width:100%; height:100%; object-fit:cover;}
+.modal-body{padding:32px; display:flex; flex-direction:column;}
+.modal-body h3{font-size:1.5rem; margin-bottom:10px;}
+.modal-body .modal-desc{color:var(--muted); font-size:0.92rem; line-height:1.6; margin-bottom:18px;}
+.modal-ingredients{font-size:0.82rem; color:var(--muted); margin-bottom:20px; line-height:1.6;}
+.modal-ingredients b{color:var(--ink); display:block; margin-bottom:6px; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.04em;}
+.modal-addons{margin-bottom:20px;}
+.modal-addons b{display:block; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:10px;}
+.addon-row{display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); font-size:0.88rem;}
+.addon-row label{display:flex; align-items:center; gap:10px; cursor:pointer;}
+.addon-row input{width:17px; height:17px; accent-color:var(--copper);}
+.addon-price{color:var(--copper-deep); font-family:'Space Mono',monospace; font-size:0.82rem;}
+html[data-theme="dark"] .addon-price{color:var(--copper-light);}
+.modal-qty{display:flex; align-items:center; gap:16px; margin-bottom:22px; margin-top:auto;}
+.modal-qty button{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); font-size:1.1rem; font-weight:700;}
+.modal-qty span{font-family:'Space Mono',monospace; font-size:1.1rem; min-width:20px; text-align:center;}
+.modal-foot{display:flex; align-items:center; justify-content:space-between; gap:14px;}
+.modal-foot .modal-total{font-family:'Fraunces',serif; font-size:1.3rem; font-weight:700; color:var(--copper-deep);}
+html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
+@media(max-width:700px){ .product-modal{grid-template-columns:1fr; max-height:92vh;} .modal-img{aspect-ratio:16/10;} }
+
+/* ============================================================
+   19. BARRA FIXA MOBILE
+   ============================================================ */
+.mobile-bar{position:fixed; left:0; right:0; bottom:0; z-index:180; background:var(--ink); color:var(--paper); padding:14px 18px; padding-bottom:calc(14px + env(safe-area-inset-bottom)); display:none; align-items:center; justify-content:space-between; gap:14px; transform:translateY(100%); transition:transform .35s var(--ease);}
+.mobile-bar.show{transform:translateY(0);}
+.mobile-bar-info{font-size:0.86rem;}
+.mobile-bar-info b{font-family:'Fraunces',serif; display:block; font-size:1rem;}
+.mobile-bar button{background:var(--copper); color:#fff; padding:12px 20px; border-radius:100px; font-weight:700; font-size:0.84rem; white-space:nowrap;}
+@media(max-width:760px){
+  .mobile-bar{display:flex;}
+  .float-cart{display:none;}
+  footer{padding-bottom:calc(90px + env(safe-area-inset-bottom));}
+}
+
+@media(max-width:900px){
+  .navlinks{display:none;}
+  .burger-btn{display:flex;}
+  .hero .wrap{grid-template-columns:1fr;}
+  .hero-visual{order:-1;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav id="nav">
+  <div class="wrap">
+    <div class="brand">Brasa da Vila</div>
+    <div class="navlinks">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#promocoes">Promoções</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#local">Localização</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">🌙</button>
+      <button class="nav-cart-btn" id="navCartBtn">Fazer Pedido <span class="cart-count" id="cartCountNav">0</span></button>
+      <button class="burger-btn" id="burgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Fechar menu">✕</button>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#promocoes">Promoções</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#avaliacoes">Avaliações</a>
+  <a href="#local">Localização</a>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div>
+      <div class="badge-row">
+        <span class="badge"><span class="dot"></span>4,9★ no Google</span>
+        <span class="badge"><span class="dot"></span>Entrega em 30 min</span>
+        <span class="badge"><span class="dot"></span>Desde 2015</span>
+      </div>
+      <h1>Hambúrguer artesanal que conquista clientes <span class="it">desde a primeira mordida.</span></h1>
+      <p class="desc">Ingredientes selecionados, pão feito na padaria do bairro e chapa quente todos os dias. Monte seu pedido abaixo e envie direto pelo WhatsApp.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#cardapio">Ver cardápio →</a>
+        <a class="btn-ghost" href="#promocoes">Promoções da semana</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo"><img src="img/hero-burger.jpg" alt="Hambúrguer artesanal Brasa da Vila"></div>
+      <div class="hero-float">
+        <div class="stars-mini">★★★★★</div>
+        <div><b>4.9</b><span>780+ avaliações</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Pão artesanal</span><span>Carne selecionada</span><span>Molho da casa</span><span>Entrega em 30 min</span><span>Pix na entrega</span>
+    <span>Pão artesanal</span><span>Carne selecionada</span><span>Molho da casa</span><span>Entrega em 30 min</span><span>Pix na entrega</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     CARDÁPIO / CATÁLOGO
+     ============================================================ -->
+<section class="section" id="cardapio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Cardápio</span><h2>Monte seu pedido <span class="it">em segundos</span></h2></div>
+      <p>Clique na foto pra ver detalhes e adicionais, ou adicione direto ao carrinho.</p>
+    </div>
+    <div class="menu-tabs" id="menuTabs">
+      <button class="menu-tab active" data-cat="todos">Todos</button>
+      <button class="menu-tab" data-cat="hamburgueres">Hambúrgueres</button>
+      <button class="menu-tab" data-cat="combos">Combos</button>
+      <button class="menu-tab" data-cat="batatas">Batatas</button>
+      <button class="menu-tab" data-cat="bebidas">Bebidas</button>
+      <button class="menu-tab" data-cat="sobremesas">Sobremesas</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+    <div class="extras-note">🧀 Adicionais como bacon, cheddar e catupiry ficam disponíveis ao clicar em cada hambúrguer ou combo.</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROMOÇÕES DA SEMANA
+     ============================================================ -->
+<section class="section" id="promocoes" style="background:var(--panel-2);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Promoções</span><h2>Promoções <span class="it">da semana</span></h2></div>
+      <p>Combos especiais com desconto, direto pro carrinho.</p>
+    </div>
+    <div class="promo-grid" id="promoGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALERIA
+     ============================================================ -->
+<section class="section" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Galeria</span><h2>Um gostinho <span class="it">antes de pedir</span></h2></div>
+      <p>Clique numa foto pra ampliar.</p>
+    </div>
+    <div class="gallery-grid reveal" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOBRE + CONTADORES
+     ============================================================ -->
+<section class="section about" id="sobre">
+  <div class="wrap">
+    <div class="about-img reveal"><img src="img/cozinha.jpg" alt="Cozinha Brasa da Vila"></div>
+    <div class="about-body reveal">
+      <span class="eyebrow">Nossa história</span>
+      <h2>Da barraca de esquina pro <span class="it">bairro inteiro</span></h2>
+      <p>Começamos em 2015 numa barraquinha simples, com uma chapa e muita vontade. Hoje atendemos Volta Redonda e Barra Mansa inteiras, sem nunca perder o tempero de origem.</p>
+      <div class="counters">
+        <div class="counter"><b data-target="12500">0</b><span>Hambúrgueres vendidos</span></div>
+        <div class="counter"><b data-target="1800">0</b><span>Clientes atendidos</span></div>
+        <div class="counter"><b data-target="49" data-decimal="1">0</b><span>Nota no Google</span></div>
+        <div class="counter"><b data-target="2015" data-plain="1">0</b><span>Desde quando</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DIFERENCIAIS
+     ============================================================ -->
+<section class="section" id="diferenciais">
+  <div class="wrap">
+    <div class="section-head reveal"><div><span class="eyebrow">Diferenciais</span><h2>Por que escolher <span class="it">a Brasa da Vila?</span></h2></div></div>
+    <div class="diff-grid">
+      <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a4 4 0 0 1 4-4h9a3 3 0 0 1 3 3v1a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M8 9V7a2 2 0 0 1 2-2h1"/></svg></div><h3>Carne fresca todo dia</h3><p>Comprada diariamente, sem estoque parado e sem sabor perdido.</p></div>
+      <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12c0-3 1.8-6 4-8 2.2 2 4 5 4 8s-1.8 6-4 8c-2.2-2-4-5-4-8Z"/></svg></div><h3>Pão artesanal</h3><p>Feito na padaria do bairro, sempre fresquinho, nunca industrializado.</p></div>
+      <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-4 3-6 5-9Z"/></svg></div><h3>Molho da casa</h3><p>Receita própria, testada por anos, que ninguém mais consegue copiar.</p></div>
+      <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="17" cy="19" r="2"/><path d="M2 5h2l2.2 10.2a2 2 0 0 0 2 1.6H17a2 2 0 0 0 2-1.6L20.5 8H6"/></svg></div><h3>Entrega rápida</h3><p>Chega em até 30 minutos, sempre quentinho e bem embalado.</p></div>
+      <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4V4Z"/><path d="M8 9h8M8 12h5"/></svg></div><h3>Ingredientes selecionados</h3><p>Fornecedores escolhidos a dedo, com padrão de qualidade fixo.</p></div>
+      <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-3.6-.8L3 21l1.9-5.5A8.4 8.4 0 0 1 12.6 3a8.4 8.4 0 0 1 8.4 8.5Z"/></svg></div><h3>Atendimento pelo WhatsApp</h3><p>Peça, acompanhe e receba sem complicação, direto no seu celular.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AVALIAÇÕES
+     ============================================================ -->
+<section class="section" id="avaliacoes" style="background:var(--panel-2);">
+  <div class="wrap">
+    <div class="section-head reveal" style="justify-content:center; text-align:center; width:100%; flex-direction:column; align-items:center;">
+      <span class="eyebrow">Avaliações</span><h2 style="max-width:none;">Quem prova, <span class="it">vira cliente</span></h2>
+    </div>
+    <div class="google-badge reveal"><b>4.9</b> ★★★★★ &nbsp;·&nbsp; 780+ avaliações no Google</div>
+    <div class="review-carousel reveal">
+      <div class="review-track">
+        <div class="review-slides" id="reviewSlides">
+          <div class="review-slide"><div class="review-card"><div class="avatar">R</div><div class="stars">★★★★★</div><p>"Peço toda semana. Chega quentinho e o molho da casa não tem igual na região."</p><div class="review-name">Renata M.</div><div class="review-score">Cliente Google</div></div></div>
+          <div class="review-slide"><div class="review-card"><div class="avatar">D</div><div class="stars">★★★★★</div><p>"Melhor custo-benefício de Volta Redonda. Atendimento rápido pelo WhatsApp."</p><div class="review-name">Diego F.</div><div class="review-score">Cliente Google</div></div></div>
+          <div class="review-slide"><div class="review-card"><div class="avatar">C</div><div class="stars">★★★★★</div><p>"O duplo na brasa é surreal. Virei cliente fiel, recomendo de olhos fechados."</p><div class="review-name">Carla S.</div><div class="review-score">Cliente Google</div></div></div>
+        </div>
+      </div>
+      <div class="review-dots" id="reviewDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOCALIZAÇÃO
+     ============================================================ -->
+<section class="section" id="local">
+  <div class="wrap">
+    <div class="section-head reveal"><div><span class="eyebrow">Localização</span><h2>Fácil de achar, <span class="it">difícil de esquecer</span></h2></div></div>
+    <div class="local-grid">
+      <div class="local-cards reveal">
+        <div class="local-card"><div class="ico">📍</div><h4>Endereço</h4><p>Av. Exemplo, 123 — Bairro, Volta Redonda - RJ</p></div>
+        <div class="local-card"><div class="ico">🕒</div><h4>Horário</h4><p>Ter–Sex 18h–00h<br>Sáb–Dom 18h–01h<br>Segunda: fechado</p></div>
+        <div class="local-card"><div class="ico">📞</div><h4>WhatsApp</h4><p>(24) 99999-9999</p></div>
+        <div class="local-card"><div class="ico">📸</div><h4>Instagram</h4><p>@brasadavila</p></div>
+        <div class="local-card" style="grid-column:1/-1;"><div class="ico">🛵</div><h4>Áreas atendidas</h4><p>Volta Redonda, Barra Mansa e Resende — consulte a taxa de entrega pelo WhatsApp.</p></div>
+      </div>
+      <div class="map-box reveal"><iframe loading="lazy" src="https://www.google.com/maps?q=Volta+Redonda+RJ&output=embed"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INSTAGRAM
+     ============================================================ -->
+<section class="section" id="instagram" style="background:var(--panel-2); padding-top:70px; padding-bottom:70px;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Instagram</span><h2>Siga <span class="it">@brasadavila</span></h2></div>
+      <a class="btn-ghost" href="https://instagram.com" target="_blank" rel="noopener">Ver Instagram →</a>
+    </div>
+    <div class="insta-grid reveal" id="instaGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal"><div><span class="eyebrow">Dúvidas</span><h2>Perguntas <span class="it">frequentes</span></h2></div></div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><button class="faq-q"><span>Vocês fazem entrega?</span><span class="plus">+</span></button><div class="faq-a"><p>Sim! Entregamos em Volta Redonda, Barra Mansa e Resende, com taxa calculada pelo WhatsApp.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Qual o horário de funcionamento?</span><span class="plus">+</span></button><div class="faq-a"><p>Terça a sexta das 18h à meia-noite, sábado e domingo das 18h à 1h. Segundas não abrimos.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Aceitam Pix?</span><span class="plus">+</span></button><div class="faq-a"><p>Aceitamos Pix, dinheiro e cartão na entrega ou retirada.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Tem opção de retirada no local?</span><span class="plus">+</span></button><div class="faq-a"><p>Sim, você pode retirar direto no balcão — só avisar pelo WhatsApp que o pedido está pronto.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Qual o tempo médio de entrega?</span><span class="plus">+</span></button><div class="faq-a"><p>Em média 30 minutos, podendo variar um pouco em dias de maior movimento.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA FINAL — venda do serviço
+     ============================================================ -->
+<section class="section sell-cta">
+  <div class="wrap">
+    <div>
+      <span class="sell-eyebrow">Gostou deste site?</span>
+      <h2>Este é um modelo — mostra como <span class="it" style="color:var(--copper-light);">seu negócio</span> pode ter uma presença assim.</h2>
+      <p>Criei esse exemplo pra mostrar como um catálogo digital profissional pode ficar. Se você tem um comércio local, posso criar algo parecido pro seu negócio.</p>
+      <div class="deliver-list">
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Site personalizado</div>
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Carrinho + WhatsApp</div>
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Google Maps</div>
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Instagram integrado</div>
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Catálogo completo</div>
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Seção de promoções</div>
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Hospedagem inclusa</div>
+        <div class="deliver-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Suporte contínuo</div>
+      </div>
+    </div>
+    <div class="sell-panel reveal">
+      <p class="big-quote">"Um site assim para minha empresa."</p>
+      <a class="btn-primary" href="https://wa.me/5524988888888?text=Oi!%20Vi%20o%20site%20modelo%20Brasa%20da%20Vila%20e%20quero%20um%20orçamento%20pro%20meu%20negócio." target="_blank" rel="noopener">Solicitar orçamento pelo WhatsApp</a>
+      <div class="note">Resposta em até 24h · Volta Redonda, Barra Mansa e Resende</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:1rem;">Brasa da Vila</div>
+    <div>Volta Redonda · RJ — Ter a Dom, 18h às 00h</div>
+    <div>Site-modelo criado para demonstração comercial</div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     BOTÕES FLUTUANTES
+     ============================================================ -->
+<div class="float-stack">
+  <button class="float-btn float-cart" id="floatCartBtn" aria-label="Abrir carrinho">🛒<span class="cart-count" id="cartCountFloat">0</span></button>
+  <a class="float-btn float-wa" href="https://wa.me/5524999999999" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+</div>
+
+<!-- ============================================================
+     BARRA FIXA MOBILE
+     ============================================================ -->
+<div class="mobile-bar" id="mobileBar">
+  <div class="mobile-bar-info"><b id="mobileBarTotal">R$ 0</b><span id="mobileBarCount">0 itens</span></div>
+  <button id="mobileBarBtn">Finalizar Pedido</button>
+</div>
+
+<!-- ============================================================
+     CARRINHO — DRAWER
+     ============================================================ -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h3>Seu pedido</h3><button id="cartClose" aria-label="Fechar carrinho">✕</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-summary">
+    <div class="row"><span>Subtotal</span><span id="cartSubtotal">R$ 0</span></div>
+    <div class="row total"><span>Total</span><span id="cartTotal">R$ 0</span></div>
+    <button class="btn-whatsapp" id="sendWhatsApp" disabled>Enviar pedido pelo WhatsApp</button>
+  </div>
+</aside>
+
+<!-- ============================================================
+     MODAL DE PRODUTO
+     ============================================================ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="product-modal">
+    <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    <div class="modal-img"><img id="modalImg" src="" alt=""></div>
+    <div class="modal-body">
+      <h3 id="modalName"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-ingredients" id="modalIngredients"></div>
+      <div class="modal-addons" id="modalAddons"></div>
+      <div class="modal-qty">
+        <button id="modalQtyMinus">−</button><span id="modalQtyVal">1</span><button id="modalQtyPlus">+</button>
+      </div>
+      <div class="modal-foot">
+        <span class="modal-total" id="modalTotal">R$ 0</span>
+        <button class="btn-primary" id="modalAddBtn">Adicionar ao pedido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>
