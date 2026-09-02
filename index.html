@@ -378,7 +378,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
      ============================================================ -->
 <nav id="nav">
   <div class="wrap">
-    <div class="brand">Brasa da Vila</div>
+    <div class="brand" id="brandNameNav">Brasa da Vila</div>
     <div class="navlinks">
       <a href="#cardapio">Cardápio</a>
       <a href="#promocoes">Promoções</a>
@@ -388,7 +388,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
     </div>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">🌙</button>
-      <a class="nav-wa-btn" href="https://wa.me/5524999597969" target="_blank" rel="noopener" aria-label="Peça pelo WhatsApp">💬 Peça pelo WhatsApp</a>
+      <a class="nav-wa-btn wa-link" id="navWaBtn" href="#" target="_blank" rel="noopener" aria-label="Peça pelo WhatsApp">💬 Peça pelo WhatsApp</a>
       <button class="nav-cart-btn" id="navCartBtn">Fazer Pedido <span class="cart-count" id="cartCountNav">0</span></button>
       <button class="burger-btn" id="burgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
     </div>
@@ -402,7 +402,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
   <a href="#galeria">Galeria</a>
   <a href="#avaliacoes">Avaliações</a>
   <a href="#local">Localização</a>
-  <a class="nav-wa-btn" href="https://wa.me/5524999597969" target="_blank" rel="noopener" style="margin-top:10px;">💬 Peça pelo WhatsApp</a>
+  <a class="nav-wa-btn wa-link" id="mobileWaBtn" href="#" target="_blank" rel="noopener" style="margin-top:10px;">💬 Peça pelo WhatsApp</a>
 </div>
 
 <!-- ============================================================
@@ -413,9 +413,9 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
   <div class="wrap">
     <div>
       <div class="badge-row">
-        <span class="badge"><span class="dot"></span>4,9★ no Google</span>
+        <span class="badge"><span class="dot"></span><span id="badgeRating">4,9★ no Google</span></span>
         <span class="badge"><span class="dot"></span>Entrega em 30 min</span>
-        <span class="badge"><span class="dot"></span>Desde 2015</span>
+        <span class="badge"><span class="dot"></span><span id="badgeFounded">Desde 2015</span></span>
       </div>
       <h1>Hambúrguer artesanal que conquista clientes <span class="it">desde a primeira mordida.</span></h1>
       <p class="desc">Ingredientes selecionados, pão feito na padaria do bairro e chapa quente todos os dias. Monte seu pedido abaixo e envie direto pelo WhatsApp.</p>
@@ -428,7 +428,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
       <div class="hero-photo"><img src="img/hero-burger.jpg" alt="Hambúrguer artesanal Brasa da Vila" fetchpriority="high"></div>
       <div class="hero-float">
         <div class="stars-mini">★★★★★</div>
-        <div><b>4.9</b><span>780+ avaliações</span></div>
+        <div><b id="heroRating">4.9</b><span id="heroReviewCount">780+ avaliações</span></div>
       </div>
     </div>
   </div>
@@ -494,7 +494,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
      ============================================================ -->
 <section class="section about" id="sobre">
   <div class="wrap">
-    <div class="about-img reveal"><img src="img/cozinha.jpg" alt="Cozinha Brasa da Vila"></div>
+    <div class="about-img reveal"><img src="img/cozinha.jpg" alt="Cozinha" id="aboutImgAlt"></div>
     <div class="about-body reveal">
       <span class="eyebrow">Nossa história</span>
       <h2>Da barraca de esquina pro <span class="it">bairro inteiro</span></h2>
@@ -514,7 +514,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
      ============================================================ -->
 <section class="section" id="diferenciais">
   <div class="wrap">
-    <div class="section-head reveal"><div><span class="eyebrow">Diferenciais</span><h2>Por que escolher <span class="it">a Brasa da Vila?</span></h2></div></div>
+    <div class="section-head reveal"><div><span class="eyebrow">Diferenciais</span><h2>Por que escolher <span class="it" id="diffBrandName">a Brasa da Vila?</span></h2></div></div>
     <div class="diff-grid">
       <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a4 4 0 0 1 4-4h9a3 3 0 0 1 3 3v1a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M8 9V7a2 2 0 0 1 2-2h1"/></svg></div><h3>Carne fresca todo dia</h3><p>Comprada diariamente, sem estoque parado e sem sabor perdido.</p></div>
       <div class="diff-card reveal"><div class="diff-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12c0-3 1.8-6 4-8 2.2 2 4 5 4 8s-1.8 6-4 8c-2.2-2-4-5-4-8Z"/></svg></div><h3>Pão artesanal</h3><p>Feito na padaria do bairro, sempre fresquinho, nunca industrializado.</p></div>
@@ -534,7 +534,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
     <div class="section-head reveal" style="justify-content:center; text-align:center; width:100%; flex-direction:column; align-items:center;">
       <span class="eyebrow">Avaliações</span><h2 style="max-width:none;">Quem prova, <span class="it">vira cliente</span></h2>
     </div>
-    <div class="google-badge reveal"><b>4.9</b> ★★★★★ &nbsp;·&nbsp; 780+ avaliações no Google</div>
+    <div class="google-badge reveal"><b id="googleBadgeRating">4.9</b> ★★★★★ &nbsp;·&nbsp; <span id="googleBadgeCount">780+ avaliações</span> no Google</div>
     <div class="review-carousel reveal">
       <div class="review-track">
         <div class="review-slides" id="reviewSlides">
@@ -556,13 +556,13 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
     <div class="section-head reveal"><div><span class="eyebrow">Localização</span><h2>Fácil de achar, <span class="it">difícil de esquecer</span></h2></div></div>
     <div class="local-grid">
       <div class="local-cards reveal">
-        <div class="local-card"><div class="ico">📍</div><h4>Endereço</h4><p>Av. Exemplo, 123 — Bairro, Volta Redonda - RJ</p></div>
-        <div class="local-card"><div class="ico">🕒</div><h4>Horário</h4><p>Ter–Sex 18h–00h<br>Sáb–Dom 18h–01h<br>Segunda: fechado</p></div>
-        <div class="local-card"><div class="ico">📞</div><h4>WhatsApp</h4><p>(24) 99999-9999</p></div>
-        <div class="local-card"><div class="ico">📸</div><h4>Instagram</h4><p>@brasadavila</p></div>
-        <div class="local-card" style="grid-column:1/-1;"><div class="ico">🛵</div><h4>Áreas atendidas</h4><p>Volta Redonda, Barra Mansa e Resende — consulte a taxa de entrega pelo WhatsApp.</p></div>
+        <div class="local-card"><div class="ico">📍</div><h4>Endereço</h4><p id="localAddress">Av. Exemplo, 123 — Bairro, Volta Redonda - RJ</p></div>
+        <div class="local-card"><div class="ico">🕒</div><h4>Horário</h4><p id="localHours">Ter–Sex 18h–00h<br>Sáb–Dom 18h–01h<br>Segunda: fechado</p></div>
+        <div class="local-card"><div class="ico">📞</div><h4>WhatsApp</h4><p id="localWhats">(24) 99999-9999</p></div>
+        <div class="local-card"><div class="ico">📸</div><h4>Instagram</h4><p id="localInsta">@brasadavila</p></div>
+        <div class="local-card" style="grid-column:1/-1;"><div class="ico">🛵</div><h4>Áreas atendidas</h4><p><span id="serviceAreasText">Volta Redonda, Barra Mansa e Resende</span> — consulte a taxa de entrega pelo WhatsApp.</p></div>
       </div>
-      <div class="map-box reveal"><iframe loading="lazy" src="https://www.google.com/maps?q=Volta+Redonda+RJ&output=embed"></iframe></div>
+      <div class="map-box reveal"><iframe id="mapsIframe" loading="lazy" src="https://www.google.com/maps?q=Volta+Redonda+RJ&output=embed"></iframe></div>
     </div>
   </div>
 </section>
@@ -573,7 +573,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
 <section class="section" id="instagram" style="background:var(--panel-2); padding-top:70px; padding-bottom:70px;">
   <div class="wrap">
     <div class="section-head reveal">
-      <div><span class="eyebrow">Instagram</span><h2>Siga <span class="it">@brasadavila</span></h2></div>
+      <div><span class="eyebrow">Instagram</span><h2>Siga <span class="it" id="instaHeading">@brasadavila</span></h2></div>
       <a class="btn-ghost" href="https://instagram.com" target="_blank" rel="noopener">Ver Instagram →</a>
     </div>
     <div class="insta-grid reveal" id="instaGrid"></div>
@@ -587,7 +587,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
   <div class="wrap">
     <div class="section-head reveal"><div><span class="eyebrow">Dúvidas</span><h2>Perguntas <span class="it">frequentes</span></h2></div></div>
     <div class="faq-list reveal">
-      <div class="faq-item"><button class="faq-q"><span>Vocês fazem entrega?</span><span class="plus">+</span></button><div class="faq-a"><p>Sim! Entregamos em Volta Redonda, Barra Mansa e Resende, com taxa calculada pelo WhatsApp.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Vocês fazem entrega?</span><span class="plus">+</span></button><div class="faq-a"><p>Sim! Entregamos em <span id="faqServiceAreas">Volta Redonda, Barra Mansa e Resende</span>, com taxa calculada pelo WhatsApp.</p></div></div>
       <div class="faq-item"><button class="faq-q"><span>Qual o horário de funcionamento?</span><span class="plus">+</span></button><div class="faq-a"><p>Terça a sexta das 18h à meia-noite, sábado e domingo das 18h à 1h. Segundas não abrimos.</p></div></div>
       <div class="faq-item"><button class="faq-q"><span>Aceitam Pix?</span><span class="plus">+</span></button><div class="faq-a"><p>Aceitamos Pix, dinheiro e cartão na entrega ou retirada.</p></div></div>
       <div class="faq-item"><button class="faq-q"><span>Tem opção de retirada no local?</span><span class="plus">+</span></button><div class="faq-a"><p>Sim, você pode retirar direto no balcão — só avisar pelo WhatsApp que o pedido está pronto.</p></div></div>
@@ -599,7 +599,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
 <!-- ============================================================
      CTA FINAL — venda do serviço
      ============================================================ -->
-<section class="section sell-cta">
+<section class="section sell-cta" id="sellCtaSection">
   <div class="wrap">
     <div>
       <span class="sell-eyebrow">Gostou deste site?</span>
@@ -619,15 +619,15 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
     <div class="sell-panel reveal">
       <p class="big-quote">"Um site assim para minha empresa."</p>
       <a class="btn-primary" href="https://wa.me/5524999597969?text=Oi!%20Vi%20o%20site%20modelo%20Brasa%20da%20Vila%20e%20quero%20um%20orçamento%20pro%20meu%20negócio." target="_blank" rel="noopener">Solicitar orçamento pelo WhatsApp</a>
-      <div class="note">Resposta em até 24h · Volta Redonda, Barra Mansa e Resende</div>
+      <div class="note">Resposta em até 24h · <span id="sellCtaAreas">Volta Redonda, Barra Mansa e Resende</span></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="brand" style="font-size:1rem;">Brasa da Vila</div>
-    <div>Volta Redonda · RJ — Ter a Dom, 18h às 00h</div>
+    <div class="brand" style="font-size:1rem;" id="brandNameFooter">Brasa da Vila</div>
+    <div id="footerCityHours">Volta Redonda · RJ — Ter a Dom, 18h às 00h</div>
     <div>Site-modelo criado para demonstração comercial</div>
   </div>
 </footer>
@@ -637,7 +637,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
      ============================================================ -->
 <div class="float-stack">
   <button class="float-btn float-cart" id="floatCartBtn" aria-label="Abrir carrinho">🛒<span class="cart-count" id="cartCountFloat">0</span></button>
-  <a class="float-btn float-wa" href="https://wa.me/5524999597969" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+  <a class="float-btn float-wa wa-link" id="floatWaBtn" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
 </div>
 
 <!-- ============================================================
@@ -690,8 +690,10 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
   <img id="lightboxImg" src="" alt="">
 </div>
 
+<script src="js/config.js"></script>
 <script src="js/data.js"></script>
 <script src="js/cart.js"></script>
+<script src="js/brand.js"></script>
 <script src="js/ui.js"></script>
 </body>
 </html>

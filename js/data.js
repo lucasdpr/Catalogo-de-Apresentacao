@@ -5,7 +5,7 @@
    mesmo nome, ou aponte "img" para um novo caminho.
    ============================================================ */
 
-const WHATSAPP_NUMBER = "5524999597969"; // número que recebe os pedidos (só dígitos, com DDI+DDD)
+const WHATSAPP_NUMBER = BRAND.whatsapp; // vem de js/config.js — número que recebe os pedidos
 
 const ADDONS = [
   { id: "bacon",     name: "Bacon",              price: 5 },
