@@ -39,13 +39,13 @@ const PRODUCTS = [
     ingredients: "Pão brioche, 2x carne bovina 120g, bacon, cheddar, cebola caramelizada.",
   },
   {
-    id: "frango-defumado", category: "hamburgueres", name: "Frango Defumado",
+    id: "frango-defumado", category: "hamburgueres", name: "X-Frango Defumado",
     price: 24, img: "img/frango-defumado.jpg",
     desc: "Filé grelhado lentamente, catupiry e molho barbecue artesanal.",
     ingredients: "Pão brioche, filé de frango defumado, catupiry, molho barbecue da casa.",
   },
   {
-    id: "veggie", category: "hamburgueres", name: "Veggie da Casa",
+    id: "veggie", category: "hamburgueres", name: "X-Veggie",
     price: 23, img: "img/veggie.jpg",
     desc: "Hambúrguer de grão-de-bico, queijo coalho grelhado e rúcula.",
     ingredients: "Pão brioche, hambúrguer de grão-de-bico, queijo coalho grelhado, rúcula, maionese de ervas.",
@@ -79,13 +79,13 @@ const PRODUCTS = [
     ingredients: "Batata rústica, tempero da casa, molho verde.",
   },
   {
-    id: "batata-cheddar", category: "batatas", name: "Batata Cheddar & Bacon",
+    id: "batata-cheddar", category: "batatas", name: "Batata com Cheddar e Bacon",
     price: 24, img: "img/batata-cheddar.jpg",
     desc: "Porção generosa coberta com cheddar cremoso e bacon crocante.",
     ingredients: "Batata rústica, cheddar cremoso, bacon crocante.",
   },
   {
-    id: "batata-palha", category: "batatas", name: "Batata Palha da Casa",
+    id: "batata-palha", category: "batatas", name: "Batata Palha",
     price: 14, img: "img/batata-palha.jpg",
     desc: "Fininha e crocante, feita na hora.",
     ingredients: "Batata palha frita na hora, sal.",
@@ -105,7 +105,7 @@ const PRODUCTS = [
     ingredients: "Fruta da estação, água ou leite, sem conservantes.",
   },
   {
-    id: "milkshake", category: "bebidas", name: "Milkshake Artesanal",
+    id: "milkshake", category: "bebidas", name: "Milkshake",
     price: 15, img: "img/milkshake.jpg",
     desc: "Cremoso, feito com sorvete da casa. Chocolate, morango ou baunilha.",
     ingredients: "Sorvete artesanal, leite, calda a escolher, chantilly.",
@@ -134,7 +134,7 @@ const PROMOTIONS = [
     save: "ECONOMIZE R$ 10,10",
   },
   {
-    id: "promo-duplo", name: "X-Duplo na Chapa + Batata Cheddar",
+    id: "promo-duplo", name: "X-Duplo na Chapa + Batata com Cheddar",
     price: 45.90, oldPrice: 58, img: "img/duplo-brasa.jpg",
     desc: "X-Duplo na Chapa acompanhado de batata com cheddar e bacon.",
     save: "ECONOMIZE R$ 12,10",
