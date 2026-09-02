@@ -168,7 +168,7 @@ promoGrid.addEventListener("click", (e) => {
 /* ---------- 7. galeria + lightbox ---------- */
 const galleryGrid = document.getElementById("galleryGrid");
 galleryGrid.innerHTML = GALLERY.map(g => `
-  <div class="gallery-item" data-full="${g.img}"><img src="${g.img}" alt="${g.alt}" loading="lazy"></div>
+  <div class="gallery-item" data-full="${g.img}" data-alt="${g.alt}"><img src="${g.img}" alt="${g.alt}" loading="lazy"></div>
 `).join("");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
@@ -176,6 +176,7 @@ galleryGrid.addEventListener("click", (e) => {
   const item = e.target.closest(".gallery-item");
   if (!item) return;
   lightboxImg.src = item.dataset.full;
+  lightboxImg.alt = item.dataset.alt || "Foto ampliada Brasa da Vila";
   lightbox.classList.add("open");
 });
 document.getElementById("lightboxClose").addEventListener("click", () => lightbox.classList.remove("open"));
@@ -188,8 +189,8 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ---------- 8. instagram ---------- */
-document.getElementById("instaGrid").innerHTML = INSTAGRAM.map(src => `
-  <div class="insta-item"><img src="${src}" alt="Post Instagram" loading="lazy"></div>
+document.getElementById("instaGrid").innerHTML = INSTAGRAM.map((src, i) => `
+  <div class="insta-item"><img src="${src}" alt="Post ${i + 1} do Instagram @brasadavila" loading="lazy"></div>
 `).join("");
 
 /* ---------- 9. contadores animados ---------- */
