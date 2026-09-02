@@ -4,11 +4,27 @@
    ============================================================ */
 
 const Cart = (() => {
-  let items = []; // { key, name, unitPrice, qty, img, addonsLabel, addonsTotal }
+  const STORAGE_KEY = "brasa-cart";
+
+  function loadFromStorage() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return []; // storage indisponível (aba privada, etc.) — segue com carrinho vazio
+    }
+  }
+
+  function saveToStorage() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); }
+    catch { /* sem storage disponível — carrinho fica só em memória nesta sessão */ }
+  }
+
+  let items = loadFromStorage(); // { key, name, unitPrice, qty, img, addonsLabel, addonsTotal }
   const listeners = [];
 
   function subscribe(fn) { listeners.push(fn); }
-  function notify() { listeners.forEach(fn => fn(items)); }
+  function notify() { saveToStorage(); listeners.forEach(fn => fn(items)); }
 
   function formatBRL(value) {
     return "R$ " + value.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
