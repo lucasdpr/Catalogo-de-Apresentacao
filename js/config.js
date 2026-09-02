@@ -9,25 +9,29 @@
 
 const BRAND = {
   // ---- identidade ----
-  name: "Sua Hamburgueria",
-  tagline: "Hambúrguer Artesanal na Sua Cidade",
-  metaDescription: "Catálogo digital da sua hamburgueria. Monte seu pedido e envie direto pelo WhatsApp.",
+  // Esta é a demo de vendas — mantém "Brasa da Vila" (nome fictício, mas completo e
+  // convincente) pra mostrar pro prospect. SÓ troque esses valores quando for gerar
+  // a cópia de entrega de um cliente real — nunca mostre "Sua Hamburgueria" /
+  // "Sua Cidade" pro dono do negócio, isso parece WIP, não personalizável.
+  name: "Brasa da Vila",
+  tagline: "Hambúrguer Artesanal em Volta Redonda",
+  metaDescription: "Catálogo digital Brasa da Vila. Monte seu pedido e envie direto pelo WhatsApp.",
 
   // ---- contato ----
   whatsapp: "5524999597969",          // só dígitos, com DDI+DDD (usado nos links wa.me)
   whatsappDisplay: "(24) 99959-7969", // como aparece escrito na seção de localização
 
   // ---- endereço / atendimento ----
-  address: "Av. Exemplo, 123 — Bairro, Sua Cidade - UF",
-  mainCity: "Sua Cidade",
-  state: "UF",
-  serviceAreas: "Sua Cidade e região",
+  address: "Av. Exemplo, 123 — Bairro, Volta Redonda - RJ",
+  mainCity: "Volta Redonda",
+  state: "RJ",
+  serviceAreas: "Volta Redonda, Barra Mansa e Resende",
   hoursShort: "Ter a Dom, 18h às 00h",
   hoursLines: "Ter–Sex 18h–00h<br>Sáb–Dom 18h–01h<br>Segunda: fechado",
-  mapsQuery: "São Paulo, SP", // troque pela cidade real do cliente — um endereço genérico deixa o mapa zoomado no mundo inteiro
+  mapsQuery: "Volta Redonda, RJ", // troque pela cidade real do cliente — um endereço genérico deixa o mapa zoomado no mundo inteiro
 
   // ---- redes sociais ----
-  instagramHandle: "@sua.hamburgueria",
+  instagramHandle: "@brasadavila",
   instagramUrl: "https://instagram.com",
 
   // ---- prova social ----
