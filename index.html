@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brasa da Vila — Hambúrguer Artesanal em Volta Redonda</title>
 <meta name="description" content="Catálogo digital Brasa da Vila. Monte seu pedido e envie direto pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <style>
 
 /* ============================================================
    1. TOKENS
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
-
 :root{
   --ink:#18140F; --paper:#F7F3EC; --panel:#FFFFFF; --panel-2:#F0E9DB;
   --copper:#A8601F; --copper-deep:#7A4315; --copper-light:#D98A3D; --wine:#7A3B33;
@@ -74,6 +76,10 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between;}
 .theme-toggle:hover{transform:rotate(15deg); background:rgba(168,96,31,0.1);}
 .nav-cart-btn{background:var(--copper); color:#fff; padding:10px 18px; border-radius:100px; font-size:0.8rem; font-weight:700; display:flex; align-items:center; gap:8px; transition:transform .25s var(--ease), background .25s;}
 .nav-cart-btn:hover{transform:translateY(-2px); background:var(--copper-deep);}
+.nav-wa-btn{background:#25D366; color:#fff; padding:10px 18px; border-radius:100px; font-size:0.8rem; font-weight:700; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; transition:transform .25s var(--ease), background .25s;}
+.nav-wa-btn:hover{transform:translateY(-2px); background:#1FB855;}
+@media(max-width:1080px){ .nav-right .nav-wa-btn{display:none;} }
+.mobile-menu .nav-wa-btn{font-family:'Inter',sans-serif; font-size:0.95rem; padding:14px 26px;}
 .cart-count{background:#fff; color:var(--copper); font-size:0.68rem; font-weight:800; min-width:18px; height:18px; padding:0 4px; border-radius:100px; display:flex; align-items:center; justify-content:center;}
 .burger-btn{display:none; flex-direction:column; gap:5px; width:24px;}
 .burger-btn span{height:2px; background:var(--ink); border-radius:2px;}
@@ -382,6 +388,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
     </div>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">🌙</button>
+      <a class="nav-wa-btn" href="https://wa.me/5524999999999" target="_blank" rel="noopener" aria-label="Peça pelo WhatsApp">💬 Peça pelo WhatsApp</a>
       <button class="nav-cart-btn" id="navCartBtn">Fazer Pedido <span class="cart-count" id="cartCountNav">0</span></button>
       <button class="burger-btn" id="burgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
     </div>
@@ -395,6 +402,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
   <a href="#galeria">Galeria</a>
   <a href="#avaliacoes">Avaliações</a>
   <a href="#local">Localização</a>
+  <a class="nav-wa-btn" href="https://wa.me/5524999999999" target="_blank" rel="noopener" style="margin-top:10px;">💬 Peça pelo WhatsApp</a>
 </div>
 
 <!-- ============================================================
@@ -417,7 +425,7 @@ html[data-theme="dark"] .modal-foot .modal-total{color:var(--copper-light);}
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-photo"><img src="img/hero-burger.jpg" alt="Hambúrguer artesanal Brasa da Vila"></div>
+      <div class="hero-photo"><img src="img/hero-burger.jpg" alt="Hambúrguer artesanal Brasa da Vila" fetchpriority="high"></div>
       <div class="hero-float">
         <div class="stars-mini">★★★★★</div>
         <div><b>4.9</b><span>780+ avaliações</span></div>
