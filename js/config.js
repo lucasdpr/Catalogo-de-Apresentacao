@@ -24,7 +24,7 @@ const BRAND = {
   serviceAreas: "Sua Cidade e região",
   hoursShort: "Ter a Dom, 18h às 00h",
   hoursLines: "Ter–Sex 18h–00h<br>Sáb–Dom 18h–01h<br>Segunda: fechado",
-  mapsQuery: "Brasil", // texto de busca usado no embed do Google Maps
+  mapsQuery: "São Paulo, SP", // troque pela cidade real do cliente — um endereço genérico deixa o mapa zoomado no mundo inteiro
 
   // ---- redes sociais ----
   instagramHandle: "@sua.hamburgueria",

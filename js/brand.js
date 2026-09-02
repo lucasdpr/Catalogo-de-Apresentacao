@@ -62,7 +62,7 @@
   setAttr("mapsIframe", "src", `https://www.google.com/maps?q=${BRAND.mapsQuery}&output=embed`);
 
   const aboutImg = document.getElementById("aboutImgAlt");
-  if (aboutImg) aboutImg.alt = `Cozinha ${BRAND.name}`;
+  if (aboutImg) aboutImg.alt = `Hambúrguer artesanal ${BRAND.name}`;
 
   // ---- seção de venda do site-modelo: só aparece em modo demo ----
   const sellCta = document.getElementById("sellCtaSection");

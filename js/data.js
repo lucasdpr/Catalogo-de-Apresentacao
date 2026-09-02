@@ -150,4 +150,4 @@ const GALLERY = [
   { img: "img/batata-cheddar.jpg", alt: "Batata com Cheddar e Bacon" },
 ];
 
-const INSTAGRAM = ["img/instagram1.jpg","img/instagram2.jpg","img/instagram3.jpg","img/instagram4.jpg","img/instagram5.jpg","img/instagram6.jpg"];
+const INSTAGRAM = ["img/hero-burger.jpg","img/x-bacon.jpg","img/duplo-brasa.jpg","img/milkshake.jpg","img/petit-gateau.jpg","img/batata-rustica.jpg"];
