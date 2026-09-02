@@ -21,7 +21,7 @@ const CATEGORIES_WITH_ADDONS = ["hamburgueres", "combos", "batatas"];
 const PRODUCTS = [
   // ---------------- HAMBÚRGUERES ----------------
   {
-    id: "x-vila", category: "hamburgueres", name: "X-Vila Clássico",
+    id: "x-vila", category: "hamburgueres", name: "X-Clássico",
     price: 22, img: "img/x-vila.jpg",
     desc: "Pão brioche, carne 150g, queijo prato, alface, tomate e molho da casa.",
     ingredients: "Pão brioche, carne bovina 150g, queijo prato, alface, tomate, molho da casa.",
@@ -33,7 +33,7 @@ const PRODUCTS = [
     ingredients: "Pão brioche, carne bovina 150g, bacon crocante, queijo prato, maionese da casa.",
   },
   {
-    id: "duplo-brasa", category: "hamburgueres", name: "Duplo na Brasa",
+    id: "duplo-brasa", category: "hamburgueres", name: "X-Duplo na Chapa",
     price: 29, img: "img/duplo-brasa.jpg",
     desc: "Duas carnes grelhadas, bacon crocante, cheddar e cebola caramelizada.",
     ingredients: "Pão brioche, 2x carne bovina 120g, bacon, cheddar, cebola caramelizada.",
@@ -59,10 +59,10 @@ const PRODUCTS = [
     ingredients: "Escolha o lanche na entrega/observação · batata rústica · refrigerante lata.",
   },
   {
-    id: "combo-duplo", category: "combos", name: "Combo Vila Dupla",
+    id: "combo-duplo", category: "combos", name: "Combo Duplo",
     price: 54, oldPrice: 68, img: "img/combo-duplo.jpg",
-    desc: "2x X-Vila Clássico + batata grande + 2 refrigerantes gelados.",
-    ingredients: "2x X-Vila Clássico · batata rústica grande · 2x refrigerante lata.",
+    desc: "2x X-Clássico + batata grande + 2 refrigerantes gelados.",
+    ingredients: "2x X-Clássico · batata rústica grande · 2x refrigerante lata.",
   },
   {
     id: "combo-familia", category: "combos", name: "Combo Família",
@@ -134,9 +134,9 @@ const PROMOTIONS = [
     save: "ECONOMIZE R$ 10,10",
   },
   {
-    id: "promo-duplo", name: "Duplo na Brasa + Batata Cheddar",
+    id: "promo-duplo", name: "X-Duplo na Chapa + Batata Cheddar",
     price: 45.90, oldPrice: 58, img: "img/duplo-brasa.jpg",
-    desc: "Duplo na Brasa acompanhado de batata com cheddar e bacon.",
+    desc: "X-Duplo na Chapa acompanhado de batata com cheddar e bacon.",
     save: "ECONOMIZE R$ 12,10",
   },
 ];
@@ -144,7 +144,7 @@ const PROMOTIONS = [
 const GALLERY = [
   { img: "img/hero-burger.jpg", alt: "Hambúrguer artesanal" },
   { img: "img/x-bacon.jpg", alt: "X-Bacon" },
-  { img: "img/duplo-brasa.jpg", alt: "Duplo na Brasa" },
+  { img: "img/duplo-brasa.jpg", alt: "X-Duplo na Chapa" },
   { img: "img/chapa.jpg", alt: "Direto da chapa" },
   { img: "img/ambiente.jpg", alt: "Ambiente" },
   { img: "img/cliente.jpg", alt: "Cliente satisfeito" },
