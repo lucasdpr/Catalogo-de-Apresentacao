@@ -23,6 +23,12 @@
     a.href = `https://wa.me/${BRAND.whatsapp}`;
   });
 
+  const orcamentoLink = document.querySelector(".wa-link-orcamento");
+  if (orcamentoLink) {
+    const msg = `Oi! Vi o site modelo ${BRAND.name} e quero um orçamento pro meu negócio.`;
+    orcamentoLink.href = `https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(msg)}`;
+  }
+
   // ---- badges e prova social ----
   set("badgeRating", `${BRAND.googleRating.replace(".", ",")}★ no Google`);
   set("badgeFounded", `Desde ${BRAND.foundedYear}`);

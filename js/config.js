@@ -9,25 +9,25 @@
 
 const BRAND = {
   // ---- identidade ----
-  name: "Brasa da Vila",
-  tagline: "Hambúrguer Artesanal em Volta Redonda",
-  metaDescription: "Catálogo digital Brasa da Vila. Monte seu pedido e envie direto pelo WhatsApp.",
+  name: "Sua Hamburgueria",
+  tagline: "Hambúrguer Artesanal na Sua Cidade",
+  metaDescription: "Catálogo digital da sua hamburgueria. Monte seu pedido e envie direto pelo WhatsApp.",
 
   // ---- contato ----
   whatsapp: "5524999597969",          // só dígitos, com DDI+DDD (usado nos links wa.me)
   whatsappDisplay: "(24) 99959-7969", // como aparece escrito na seção de localização
 
   // ---- endereço / atendimento ----
-  address: "Av. Exemplo, 123 — Bairro, Volta Redonda - RJ",
-  mainCity: "Volta Redonda",
-  state: "RJ",
-  serviceAreas: "Volta Redonda, Barra Mansa e Resende",
+  address: "Av. Exemplo, 123 — Bairro, Sua Cidade - UF",
+  mainCity: "Sua Cidade",
+  state: "UF",
+  serviceAreas: "Sua Cidade e região",
   hoursShort: "Ter a Dom, 18h às 00h",
   hoursLines: "Ter–Sex 18h–00h<br>Sáb–Dom 18h–01h<br>Segunda: fechado",
-  mapsQuery: "Volta+Redonda+RJ", // texto de busca usado no embed do Google Maps
+  mapsQuery: "Brasil", // texto de busca usado no embed do Google Maps
 
   // ---- redes sociais ----
-  instagramHandle: "@brasadavila",
+  instagramHandle: "@sua.hamburgueria",
   instagramUrl: "https://instagram.com",
 
   // ---- prova social ----

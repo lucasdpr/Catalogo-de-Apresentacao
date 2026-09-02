@@ -145,9 +145,9 @@ const GALLERY = [
   { img: "img/hero-burger.jpg", alt: "Hambúrguer artesanal" },
   { img: "img/x-bacon.jpg", alt: "X-Bacon" },
   { img: "img/duplo-brasa.jpg", alt: "X-Duplo na Chapa" },
-  { img: "img/chapa.jpg", alt: "Direto da chapa" },
-  { img: "img/ambiente.jpg", alt: "Ambiente" },
-  { img: "img/cliente.jpg", alt: "Cliente satisfeito" },
+  { img: "img/combo-familia.jpg", alt: "Combo Família" },
+  { img: "img/veggie.jpg", alt: "X-Veggie" },
+  { img: "img/batata-cheddar.jpg", alt: "Batata com Cheddar e Bacon" },
 ];
 
 const INSTAGRAM = ["img/instagram1.jpg","img/instagram2.jpg","img/instagram3.jpg","img/instagram4.jpg","img/instagram5.jpg","img/instagram6.jpg"];
